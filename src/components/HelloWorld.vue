@@ -1,40 +1,47 @@
-<script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
-</script>
-
 <template>
-  <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
-    </h3>
+  <div class="hello">
+    <el-button v-on:click="buttonHandler"> click </el-button>
+    {{ data }}
   </div>
 </template>
 
+<script>
+import axios from "axios";
+export default {
+  name: "HelloWorld",
+  props: {
+    msg: String,
+    data: {},
+  },
+  methods: {
+    buttonHandler() {
+      let productIds = ["012002"];
+      for (let item of productIds) {
+        axios({
+          method: "get",
+          url: `/api/pingzhongdata/${item}.js?v=20220912172728`,
+        }).then(function (response) {
+          console.log(JSON.stringify(response.data));
+        });
+      }
+    },
+  },
+};
+</script>
+
 <style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  top: -10px;
-}
-
 h3 {
-  font-size: 1.2rem;
+  margin: 40px 0 0;
 }
-
-.greetings h1,
-.greetings h3 {
-  text-align: center;
+ul {
+  list-style-type: none;
+  padding: 0;
 }
-
-@media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
-  }
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
 }
 </style>
