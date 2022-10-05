@@ -21,7 +21,9 @@ export default {
           method: "get",
           url: `/api/pingzhongdata/${item}.js?v=20220912172728`,
         }).then(function (response) {
-          console.log(JSON.stringify(response.data));
+          let data = JSON.stringify(response.data);
+          console.log(data);
+          //  coding here
         });
       }
     },
