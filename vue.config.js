@@ -26,6 +26,7 @@ module.exports = defineConfig({
       // target: "<other_url>"
       // }
     }
-  }
+  },
+  pluginOptions: { electronBuilder: { nodeIntegration: true } }
 
 })
